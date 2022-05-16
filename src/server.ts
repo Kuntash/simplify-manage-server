@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 
 // Load configuration variable before importing app
 dotenv.config({
-  path: `${__dirname}/config.env`,
+  path: `${__dirname}/../config.env`,
 });
 
 // Connect mongoose to mongoDB atlas
