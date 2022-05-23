@@ -7,7 +7,7 @@ const createSection = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     // Check if the grade exists
     const currentGrade = await SectionModel.findById({ _id: req.body.gradeId });
-    if (currentGrade) throw new CustomError("The grade doesn't exist", 404);
+    if (!currentGrade) throw new CustomError("The grade doesn't exist", 404);
 
     // Check if same section exists
     const sameNameSection = await SectionModel.findOne({
