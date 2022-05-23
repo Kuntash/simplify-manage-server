@@ -9,4 +9,6 @@ const router = Router();
 router
   .route('/create-suborg')
   .post(authController.orgProtect, subOrgController.createSubOrg);
+
+router.route('/login').post(subOrgController.login);
 export default router;

@@ -11,6 +11,8 @@ interface IOrg {
     address: string;
   };
   totalSubOrgs: number;
+  createdAt: Date;
+  updatedAt: Date;
 }
 const OrgSchema = new mongoose.Schema<IOrg>({
   orgEmail: { type: String, required: true, unique: true },
@@ -32,6 +34,14 @@ const OrgSchema = new mongoose.Schema<IOrg>({
       type: String,
       required: [true, 'An organisation must have an address'],
     },
+  },
+  createdAt: {
+    type: Date,
+    required: true,
+  },
+  updatedAt: {
+    type: Date,
+    required: true,
   },
   totalSubOrgs: {
     type: Number,

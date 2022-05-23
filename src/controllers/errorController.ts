@@ -20,6 +20,7 @@ const globalErrorHandler = (
   if (error.code === 11000) {
     sendError(res, handleDuplicateError(error));
   }
+  console.log(error);
   res.status(error.code).json({
     error: error.message,
   });

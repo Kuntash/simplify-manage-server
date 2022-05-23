@@ -4,18 +4,22 @@ import authController from './controllers/authController';
 import globalErrorHandler from './controllers/errorController';
 import orgRoutes from './routes/orgRoutes';
 import subOrgRoutes from './routes/subOrgRoutes';
+import gradeRoutes from './routes/gradeRoutes';
+import sectionRoutes from './routes/sectionRoutes';
 const app = express();
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // NOTE: For routes related to organisation, use orgRoutes;
 
 app.use('/api/v1/org', orgRoutes);
 app.use('/api/v1/suborg', subOrgRoutes);
-
+app.use('/api/v1/grade', gradeRoutes);
+app.use('/api/v1/section', sectionRoutes);
 app.get('/', (req: Request, res: Response, next: NextFunction) => {
   res.status(200).json({
-    message: 'Your request was successful',
+    message: 'This is the root router',
   });
 });
 

@@ -41,6 +41,8 @@ const orgSignUp = catchAsync(
       },
       orgName: req.body.orgName,
       orgPassword: hashedPassword,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
     });
     let newOrgObject = newOrg.toObject();
     delete newOrgObject.orgPassword;
