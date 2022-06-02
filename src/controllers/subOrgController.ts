@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
+import { OrgModel } from '../models/OrgModel';
 import SubOrgModel from '../models/SubOrgModel';
 import { catchAsync } from '../utils/catchAsync';
 import CustomError from '../utils/CustomError';
@@ -12,6 +13,8 @@ const createSubOrg = catchAsync(
         "The user doesn't have the necessary authorization",
         401
       );
+
+    // TODO: If the subscription type is free-tier, the maximum sub org that can be created is 2
     const hashedPassword = await hashPassword(req.body.adminPassword);
     const newSubOrg = await SubOrgModel.create({
       adminEmail: req.body.adminEmail,
@@ -26,9 +29,18 @@ const createSubOrg = catchAsync(
       subOrgType: req.body.subOrgType,
     });
 
+    const { adminPassword, ...restSubOrgData } = newSubOrg.toObject();
+
+    // Increment the totalSubOrgs property in the Org document.
+    await OrgModel.findOneAndUpdate(
+      { _id: req.body.currentOrg._id },
+      { $inc: { totalSubOrgs: 1 } }
+    );
+
     res.status(200).json({
       status: 'success',
       message: 'New sub-organization successfully created',
+      subOrgData: restSubOrgData,
     });
   }
 );

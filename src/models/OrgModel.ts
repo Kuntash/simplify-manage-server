@@ -3,6 +3,7 @@ import mongoose, { Model } from 'mongoose';
 interface IOrg {
   orgEmail: string;
   orgPassword?: string;
+  orgLogoUrl?: string;
   orgName: string;
   subscriptionType: 'free-tier' | 'premium' | 'enterprise';
   subscriptionValidity?: Date;
@@ -14,9 +15,11 @@ interface IOrg {
   createdAt: Date;
   updatedAt: Date;
 }
+
 const OrgSchema = new mongoose.Schema<IOrg>({
   orgEmail: { type: String, required: true, unique: true },
   orgPassword: { type: String, required: true, select: false },
+  orgLogoUrl: { type: String },
   orgName: { type: String, required: true },
   subscriptionType: {
     type: String,

@@ -7,7 +7,7 @@ const router = Router();
 // '/' route is equal to /api/v1/suborg
 
 router
-  .route('/create-suborg')
+  .route('/create')
   .post(authController.orgProtect, subOrgController.createSubOrg);
 
 router.route('/login').post(subOrgController.login);

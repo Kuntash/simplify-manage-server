@@ -6,6 +6,7 @@ export const catchAsync = (
 ) => {
   return (req: Request, res: Response, next: NextFunction) => {
     fn(req, res, next).catch((err: Error) => {
+      console.log(err);
       next(new CustomError(err.message, 400));
     });
   };

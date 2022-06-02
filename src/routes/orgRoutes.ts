@@ -7,5 +7,7 @@ const router = Router();
 
 router.route('/signup').post(orgController.orgSignUp);
 router.route('/login').post(orgController.orgLogin);
-
+router
+  .route('/uploads/logo')
+  .post(authController.orgProtect, orgController.orgUploadLogo);
 export default router;

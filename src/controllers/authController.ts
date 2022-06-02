@@ -32,7 +32,6 @@ const subOrgProtect = catchAsync(
     const currentSubOrg = await SubOrgModel.findById(decoded.id);
     if (!currentSubOrg)
       throw new CustomError('No organisation found with the given token', 401);
-    console.log(currentSubOrg);
     req.body.currentSubOrg = currentSubOrg;
     next();
   }

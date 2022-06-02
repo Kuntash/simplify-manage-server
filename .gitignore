@@ -81,3 +81,6 @@ web_modules/
 .env.test.local
 .env.production.local
 .env.local
+
+# Google service account
+simplifymanage-0c184de8cf80.json

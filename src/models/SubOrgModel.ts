@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 
-interface ISubOrg {
+interface ISubOrg extends mongoose.Document {
   subOrgName: string;
   orgId: string;
   subOrgType: string;
